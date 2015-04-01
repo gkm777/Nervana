@@ -1,9 +1,10 @@
 Note: The Python version in my environment is 2.7.9
+Note: The client MUST be able to access the network since I use some external resources (jquery files).
 
 Base Challenge
 --------------------------------
 usage
-	python ecdf.py --school "Port Chester University" input_file1.csv input_file2.csv ...
+	python ecdf.py --school "Port Chester University" input_file1.csv input_file2.csv
 	
 algorithm
 	reference to http://en.wikipedia.org/wiki/Percentile#The_Nearest_Rank_method
@@ -17,7 +18,7 @@ algorithm
 Bonus Challenge #1
 --------------------------------
 server usage
-	python server.py --school "Port Chester University" input_file1.csv input_file2.csv ...
+	python server.py --school "Port Chester University" input_file1.csv input_file2.csv
 	
 client usage	
 	python client.py X Y
@@ -26,11 +27,14 @@ client usage
 output
 	client would print out what it got from server;
 	server would log requests in the file request_history.log
-
 	
 	
 Bonus Challenge #2
 --------------------------------
+note
+	MUST install plenty of dependent libs such as matplotlib, scipy, statsmodels ...etc.
+	It might take an hour to download and install.
+	In case that your environment not works, I backup my local result into demo.png.
+	
 usage
 	python visual.py --school "Port Chester University" input_file1.csv input_file2.csv
-	
