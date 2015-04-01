@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Percentile Request</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#button").click(function(){
+					$.post("/",
+						JSON.stringify(
+							{
+								percentile: $("#percentile").val(),
+								request: "please send the " + ordinal_number($("#percentile").val()) + " percentile to client " + $("#client").val()
+							}
+						),
+						function(data, status) {
+							$("#result").text("The value of " + ordinal_number($("#percentile").val()) + " percentile is " + data);
+						}
+					);
+				});
+			});	
+			ordinal_number = function(x) {
+				switch (x) {
+					case 11: return "11th";
+					case 12: return "12th";
+					case 13: return "13th";
+				}
+				switch (x % 10) {
+					case 1: return x + "st";
+					case 2: return x + "nd";
+					case 3: return x + "rd";
+					default: return x + "th";
+				}
+			}
+		</script>
+		</head>
+	<body>
+		<table>
+			<tr>
+				<td><label for="client">Name</label></td>
+				<td><input type="text" id="client" /></td>
+			</tr>
+			<tr>
+				<td><label for="percentile">Percentile (1-100)</label></td>
+				<td><input type="number" min="1" max="100" id="percentile"/></td>
+			</tr>
+			<tr>
+				<td/>
+				<td><button id="button">submit</button></td>
+			</tr>
+			<strong><div id="result" style="color:red"></div></strong>
+		</table>
+	</body>
+</html>

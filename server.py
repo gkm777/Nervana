@@ -11,7 +11,13 @@ def log(msg):
 
 class RequestHandler(BaseHTTPRequestHandler):		
 	scores = None
+	html = None
+	def do_GET(self):
+		self.send_response(200, "OK")
+		self.end_headers()
+		self.wfile.write(RequestHandler.html)
 	def do_POST(self):
+		print "POST"
 		length = int(self.headers['Content-length'])
 		data = json.JSONDecoder().decode(self.rfile.read(length))
 		log(data["request"])
@@ -29,11 +35,14 @@ def main():
 		sys.exit(0)
 	school_name = sys.argv[2]
 	RequestHandler.scores = ecdf.loadScores(school_name, sys.argv[3:])
+	with open ("template.html", "r") as template:
+		RequestHandler.html = template.read()
 	
 	httpd = HTTPServer((ADDR, PORT), RequestHandler)
 	try:
 		httpd.serve_forever()
 	except KeyboardInterrupt:
 		sys.exit()
+
 if __name__ == "__main__":
 	main()
