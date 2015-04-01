@@ -1,0 +1,45 @@
+Base Challenge
+--------------------------------
+usage
+	python ecdf.py --school "Port Chester University" input_file1.csv input_file2.csv
+	
+algorithm
+	reference to http://en.wikipedia.org/wiki/Percentile#The_Nearest_Rank_method
+	given scores[] (of students in a specific school) and percentile p,
+	the percentile value (output) should be scores[ceil(p/100 * N)-1]
+	i.e. 
+	when p = 0   => output = 0
+	when p = 100 => output = highest score among students
+
+	
+Bonus Challenge #1
+--------------------------------
+client-server model
+
+usage
+	python server.py --listen 12345 --school "Port Chester University" input_file1.csv input_file2.csv
+	python client.py --get 127.0.0.1 12345 please send the Xth percentile to client Y
+	
+output
+	client would print out what it got from server;
+	server would log requests in the file request_history.log
+
+note
+	I deployed another RESTful solution by Django in directory RESTful.
+	To test this, it requires to install django (and dependent lib as well).
+	To start a server:
+		python manage.py runserver 127.0.0.1:8080
+	To configure a server:
+		change the list of inputs in config.ini
+	to connect as a client:
+		Use any modern web explorer (such as chrome, safari, ...etc) to connect to 127.0.0.1:8080.
+		By giving input of client, school, and percentile, server will reply the corresponding answer and log the request.
+	
+	In case that django is not installed or configured in other environment, I put some demo image in directory/demo.
+
+	
+Bonus Challenge #2
+--------------------------------
+usage
+	python visual.py --school "Port Chester University" input_file1.csv input_file2.csv
+	
