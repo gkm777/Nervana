@@ -2,8 +2,16 @@ import sys
 import csv
 
 def percentile(p, data):
-	# p: percentile rank
-	# data: sorted samples
+	try:
+		p = int(p)
+		assert p >= 0
+		assert p <= 100
+		assert data
+	except:
+		return "Invalid"
+	# input:
+	#  p: percentile rank
+	#  data: sorted samples
 	# algorithm:
 	#  ref to wiki page http://en.wikipedia.org/wiki/Percentile#Nearest_Rank_method
 	#  (valid 4/1/2015)
@@ -12,10 +20,7 @@ def percentile(p, data):
 	# eg.
 	# 0   => 0
 	# 100 => highest data
-	if len(data) <= 0:
-		# sys.stderr.write("ERROR: data is empty")
-		return "Invalid"
-	if p < 1:
+	if p <= 0:
 		return 0
 	if p >= 100:
 		return data[-1]
