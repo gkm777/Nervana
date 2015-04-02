@@ -21,6 +21,9 @@ Bonus Challenge #1
 --------------------------------
 note
 	The client MUST be able to access the network since I use some external resources (jquery files).
+	client.py and server.py both use port 8000, and it could be changed easily if port 8000 is occupied:
+		server.py:8 PORT = 8000 # change 8000 to whatever port you want to use
+		client.py:29 localhost:8000 # change 8000 to whatever port you want to use
 	
 server usage
 	python server.py --school "Port Chester University" input_file1.csv input_file2.csv
